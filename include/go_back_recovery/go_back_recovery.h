@@ -2,7 +2,8 @@
 #define GO_BACK_RECOVERY_H_
 #include <nav_core/recovery_behavior.h>
 #include <costmap_2d/costmap_2d_ros.h>
-#include <tf/transform_listener.h>
+#include <tf2_ros/buffer.h>
+#include <string>
 #include <ros/ros.h>
 #include <base_local_planner/costmap_model.h>
 #include <geometry_msgs/Twist.h>
@@ -14,16 +15,16 @@
 
 namespace go_back_recovery{
  class GoBackRecovery : public nav_core::RecoveryBehavior {
-  protected :
+  public :
    GoBackRecovery();
-   void initialize(std::string name, tf::TransformListener* tf, costmap_2d::Costmap2DROS* global_costmap, costmap_2d::Costmap2DROS* local_costmap);
+   virtual void initialize(std::string name, tf2_ros::Buffer*, costmap_2d::Costmap2DROS* global_costmap, costmap_2d::Costmap2DROS* local_costmap);
    void runBehavior();
    ~GoBackRecovery();
   private :
     costmap_2d::Costmap2DROS* global_costmap_, *local_costmap_;
     costmap_2d::Costmap2D costmap_;
     std::string name_;
-    tf::TransformListener* tf_;
+    //tf::TransformListener* tf_;
     ros::NodeHandle n;
     ros::Publisher vel_pub;
     ros::Subscriber scan_sub;

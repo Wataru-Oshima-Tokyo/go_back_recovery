@@ -9,7 +9,10 @@ project(go_back_recovery)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   cmake_modules
-  tf
+  tf2
+  tf2_geometry_msgs
+  tf2_ros
+  angles
   costmap_2d
   nav_core
   pluginlib
@@ -27,7 +30,7 @@ include_directories(
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES go_back_recovery
-  CATKIN_DEPENDS roscpp pluginlib
+  CATKIN_DEPENDS roscpp pluginlib costmap_2d geometry_msgs nav_core tf2 tf2_ros
 #  DEPENDS system_lib
 )
 
