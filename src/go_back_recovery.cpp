@@ -14,11 +14,12 @@ PLUGINLIB_EXPORT_CLASS(go_back_recovery::GoBackRecovery, nav_core::RecoveryBehav
 
 namespace go_back_recovery {
 
- GoBackRecovery::GoBackRecovery(): global_costmap_(NULL), local_costmap_(NULL),  initialized_(false), world_model_(NULL) {}
+ GoBackRecovery::GoBackRecovery(): global_costmap_(NULL), local_costmap_(NULL), tf_(NULL), initialized_(false), world_model_(NULL) {}
 
-  void GoBackRecovery::initialize(std::string name, tf2_ros::Buffer*, costmap_2d::Costmap2DROS* global_costmap, costmap_2d::Costmap2DROS* local_costmap){
+  void GoBackRecovery::initialize(std::string name, tf2_ros::Buffer* tf, costmap_2d::Costmap2DROS* global_costmap, costmap_2d::Costmap2DROS* local_costmap){
   if(!initialized_){
    name_=name;
+   tf_ = tf;
    global_costmap_=global_costmap;
    local_costmap_=local_costmap; 
    world_model_=new base_local_planner::CostmapModel(*local_costmap_->getCostmap());

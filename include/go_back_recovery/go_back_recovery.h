@@ -17,14 +17,14 @@ namespace go_back_recovery{
  class GoBackRecovery : public nav_core::RecoveryBehavior {
   public :
    GoBackRecovery();
-   virtual void initialize(std::string name, tf2_ros::Buffer*, costmap_2d::Costmap2DROS* global_costmap, costmap_2d::Costmap2DROS* local_costmap);
+   virtual void initialize(std::string name, tf2_ros::Buffer* tf, costmap_2d::Costmap2DROS* global_costmap, costmap_2d::Costmap2DROS* local_costmap);
    void runBehavior();
    ~GoBackRecovery();
   private :
     costmap_2d::Costmap2DROS* global_costmap_, *local_costmap_;
     costmap_2d::Costmap2D costmap_;
     std::string name_;
-    //tf::TransformListener* tf_;
+    tf2_ros::Buffer* tf_;
     ros::NodeHandle n;
     ros::Publisher vel_pub;
     ros::Subscriber scan_sub;
